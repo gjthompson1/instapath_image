@@ -1,0 +1,17 @@
+version: '3.3'
+
+services:
+
+  server:
+    container_name: instapath_server
+    build:
+      context: './server'
+      dockerfile: Dockerfile
+    volumes:
+      - ./server:/usr/src/app:cached
+    ports:
+      - 80:80 # expose ports - HOST:CONTAINER
+    environment:
+      - APP_SETTINGS=app.config.BaseConfig
+    command: ["gunicorn", "-b", "0.0.0.0:80", "--threads", "10", "manage:app"]
+

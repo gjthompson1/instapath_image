@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Instapath Interview</title>
+  <style>
+    body {
+      font-family: 'Source Sans Pro', sans-serif;
+      padding: 10px;
+      letter-spacing: 1.2px;
+    }
+    h1 {
+      margin: 5px 0px;
+      padding: 10px;
+      text-transform: uppercase;
+      border-bottom: 1px solid gainsboro;
+    }
+    p {
+      margin: 5px 0px;
+    }
+    .images {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .image {
+      flex-direction: row;
+      padding: 10px;
+    }
+    .label {
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-right: 10px;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <h1 class="header">Image Uploader</h1>
+  <div class="images">
+    {% for image in images %}
+      <div class="image">
+        <p><span class='label'>User:</span> {{ image.get('username') }}</p>
+        <!-- <p><span class='label'>File:</span> {{ image.get('filepath') }}</p> -->
+        <p><span class='label'>Uploaded at:</span> {{ image.get('created_at') }}</p>
+        <img src="{{ image.get('filepath') }}" style="max-height: 400px; max-width: 400px;"/>
+      </div>
+    {% endfor %}
+  </div>
+</body>
+
+</html>
