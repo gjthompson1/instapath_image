@@ -8,14 +8,14 @@ from app.schema import Image
 
 images_blueprint = Blueprint('images', __name__)
 
-@images_blueprint.route('/images', methods=['GET'])
+@images_blueprint.route('/', methods=['GET'])
 def get_images():
     images = Image.query.all()
     images = [image.to_dict() for image in images]
     images = sorted(images, key=lambda k: k['created_at'], reverse=True) 
     return render_template("index.html", images=images)
 
-@images_blueprint.route('/images', methods=['POST'])
+@images_blueprint.route('/', methods=['POST'])
 def create_image():
 
     _file = request.files['image']

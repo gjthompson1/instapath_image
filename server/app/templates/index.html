@@ -32,6 +32,19 @@
       font-weight: 700;
       margin-right: 10px;
     }
+    .noImages {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      text-transform: uppercase;
+      padding: 100px;
+    }
+    code {
+        padding: 40px;
+        display: block;
+        background-color: #EFEFEF;
+    }
   </style>
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
 </head>
@@ -39,14 +52,23 @@
 <body>
   <h1 class="header">Image Uploader</h1>
   <div class="images">
-    {% for image in images %}
-      <div class="image">
-        <p><span class='label'>User:</span> {{ image.get('username') }}</p>
-        <!-- <p><span class='label'>File:</span> {{ image.get('filepath') }}</p> -->
-        <p><span class='label'>Uploaded at:</span> {{ image.get('created_at') }}</p>
-        <img src="{{ image.get('filepath') }}" style="max-height: 400px; max-width: 400px;"/>
+    {% if images|length > 0 %}
+      {% for image in images %}
+        <div class="image">
+          <p><span class='label'>User:</span> {{ image.get('username') }}</p>
+          <!-- <p><span class='label'>File:</span> {{ image.get('filepath') }}</p> -->
+          <p><span class='label'>Uploaded at:</span> {{ image.get('created_at') }}</p>
+          <img src="{{ image.get('filepath') }}" style="max-height: 400px; max-width: 400px;"/>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="noImages">
+        <p> No Images!</p>
       </div>
-    {% endfor %}
+    {% endif %}
+  </div>
+  <div>
+    <code id="output">curl -X POST -H "Content-Type: multipart/form-data" -F "username=glen" -F "image=@boji.png" http://18.190.60.60</code>
   </div>
 </body>
 
