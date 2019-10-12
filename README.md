@@ -1,9 +1,15 @@
 # Instapath Interview
 
-## Liveness
+http://18.190.60.60
 
-curl http://localhost/ping
+## POST images
 
-## Image Create
+```
+curl -X POST -H "Content-Type: multipart/form-data" -F "username=glen" -F "image=@boji.png" http://18.190.60.60
+```
 
+## Test Locally
+
+```
 curl -X POST -H "Content-Type: multipart/form-data" -F "username=glen" -F "image=@test_images/boji.png" http://localhost:5000/images
+```
